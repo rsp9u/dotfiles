@@ -21,6 +21,7 @@ Plug 'rhysd/reply.vim'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'w0rp/ale'
 Plug 'rking/ag.vim'
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 augroup vim-syntax
@@ -92,10 +93,12 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {}
 let g:ale_fixers['go'] = ['gofmt']
 let g:ale_fixers['xml'] = ['xmllint']
+let g:ale_fixers['terraform'] = ['terraform']
 call ale#Set('python_flake8_executable', 'flake8')
 call ale#Set('python_flake8_options', '--max-line-length=120')
 call ale#Set('xml_xmllint_options', '--format')
 " call ale#Set('go_golint_options', '-min_confidence=1.1')
+call ale#Set('terraform_fmt_executable', '/usr/local/bin/terraform')
 
 " side editor
 function! RegenUuidJson() abort
