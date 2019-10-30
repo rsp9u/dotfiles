@@ -19,30 +19,6 @@ Plug 'rking/ag.vim'
 Plug 'SirVer/ultisnips'
 call plug#end()
 
-let s:pwd = getcwd() . ':' . getcwd()
-let gopath_idx = stridx(getcwd(), '/go/')
-if gopath_idx != -1
-  let s:gopath = getcwd()[:gopath_idx + 3]
-  au User lsp_setup call lsp#register_server({
-      \ 'name': 'gopls',
-      \ 'cmd': {server_info->[
-      \   'docker',
-      \   'run',
-      \   '--rm',
-      \   '-i',
-      \   '-v',
-      \   s:pwd,
-      \   '-e',
-      \   'GOPATH=' . s:gopath,
-      \   '-e',
-      \   'GOARCH=amd64',
-      \   'gopls']},
-      \ 'whitelist': ['go'],
-      \ })
-  " XXX: To connect to a remote server
-  " 'cmd': {server_info->['nc', 'localhost', '9090']}
-endif
-
 let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:lsp_diagnostics_enabled = 1
