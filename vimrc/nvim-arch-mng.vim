@@ -50,8 +50,10 @@ nnoremap Q :execute "norm i" . trim(system(""))<Left><Left><Left>
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {}
 let g:ale_fixers['go'] = ['gofmt']
+let g:ale_fixers['xml'] = ['xmllint']
 call ale#Set('python_flake8_executable', 'flake8')
 call ale#Set('python_flake8_options', '--max-line-length=120')
+call ale#Set('xml_xmllint_options', '--format')
 
 " side editor
 function! RegenUuidJson() abort
