@@ -19,6 +19,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'rking/ag.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'cespare/vim-toml'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 call plug#end()
 
 filetype plugin indent on
