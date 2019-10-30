@@ -1,4 +1,9 @@
-colorscheme desert
+augroup color-scheme
+  autocmd!
+  autocmd ColorScheme peachpuff highlight Comment ctermfg=12 guifg=#5C80FF
+augroup END
+colorscheme peachpuff
+
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -16,7 +21,6 @@ Plug 'rhysd/reply.vim'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'w0rp/ale'
 Plug 'rking/ag.vim'
-Plug 'SirVer/ultisnips'
 call plug#end()
 
 let g:lsp_log_verbose = 1
