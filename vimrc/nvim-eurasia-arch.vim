@@ -18,6 +18,7 @@ Plug 'rhysd/wandbox-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'rking/ag.vim'
 Plug 'prabirshrestha/async.vim'
+Plug 'cespare/vim-toml'
 call plug#end()
 
 filetype plugin indent on
