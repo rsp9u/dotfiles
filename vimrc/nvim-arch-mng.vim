@@ -47,6 +47,13 @@ augroup END
 nnoremap Q :execute "norm i" . trim(system(""))<Left><Left><Left>
 
 " ale
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {}
+function! FixGoFmtOnDocker(buffer, lines) abort
+  return {'command': '/usr/local/bin/gofmt -e %t'}
+endfunction
+call ale#fix#registry#Add('fix_gofmt', 'FixGoFmtOnDocker', ['go'], 'Go format')
+let g:ale_fixers['go'] = ['fix_gofmt']
 call ale#Set('python_flake8_executable', 'flake8')
 call ale#Set('python_flake8_options', '--max-line-length=120')
 
