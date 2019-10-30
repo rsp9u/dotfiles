@@ -85,9 +85,16 @@ augroup quick-fix-window
 augroup END
 
 " ale
-let g:ale_linters = { 'python': ['flake8'] }
+let g:ale_linters = {}
+let g:ale_linters['python'] = ['flake8']
+let g:ale_fixers = {}
+let g:ale_fixers['sql'] = ['sqlfmt']
+let g:ale_fixers['xml'] = ['xmllint']
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fix_on_save = 1
 call ale#Set('python_flake8_executable', 'flake8')
 call ale#Set('python_flake8_options', '--max-line-length=120')
+call ale#Set('sql_sqlfmt_options', '-u')
 
 " editor for SIDE file
 function! RegenUuidJson() abort
@@ -102,3 +109,16 @@ function! RegenUuidJson() abort
 endfunction
 
 command! -nargs=0 -range=% RegenUuidJson :<line1>,<line2>call RegenUuidJson()
+
+augroup side-filtype
+  autocmd!
+  autocmd BufRead,BufNewFile *.side set filetype=side
+  autocmd BufRead,BufNewFile *.side set syntax=yaml
+augroup END
+
+function! FixSideOrder(buffer, lines) abort
+  return {'command': '/usr/local/bin/fix_side_order.py --clear-targets --stdout %t'}
+endfunction
+call ale#fix#registry#Add('fix_side_order', 'FixSideOrder', ['side'], 'Reorder SIDE file')
+"let g:ale_fixers['side'] = ['fix_side_order']
+let g:ale_fixers['side'] = []
