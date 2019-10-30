@@ -63,6 +63,22 @@ augroup js-syntax
   autocmd FileType javascript setlocal shiftwidth=2
 augroup END
 
+augroup vue-syntax
+  autocmd!
+  autocmd FileType vue setlocal expandtab
+  autocmd FileType vue setlocal tabstop=2
+  autocmd FileType vue setlocal softtabstop=2
+  autocmd FileType vue setlocal shiftwidth=2
+augroup END
+
+augroup sh-syntax
+  autocmd!
+  autocmd FileType sh setlocal expandtab
+  autocmd FileType sh setlocal tabstop=2
+  autocmd FileType sh setlocal softtabstop=2
+  autocmd FileType sh setlocal shiftwidth=2
+augroup END
+
 let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:lsp_diagnostics_enabled = 1
@@ -96,11 +112,13 @@ let g:ale_fixers = {}
 let g:ale_fixers['go'] = ['gofmt']
 let g:ale_fixers['xml'] = ['xmllint']
 let g:ale_fixers['terraform'] = ['terraform']
+let g:ale_fixers['javascript'] = ['prettier']
 call ale#Set('python_flake8_executable', 'flake8')
 call ale#Set('python_flake8_options', '--max-line-length=120')
 call ale#Set('xml_xmllint_options', '--format')
 " call ale#Set('go_golint_options', '-min_confidence=1.1')
 call ale#Set('terraform_fmt_executable', '/usr/local/bin/terraform')
+call ale#Set('javascript_prettier_options', '--print-width 120')
 
 " side editor
 function! RegenUuidJson() abort
