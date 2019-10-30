@@ -44,8 +44,17 @@ augroup yaml-syntax
   autocmd FileType yaml setlocal shiftwidth=2
 augroup END
 
+augroup html-syntax
+  autocmd!
+  autocmd FileType html setlocal expandtab
+  autocmd FileType html setlocal tabstop=2
+  autocmd FileType html setlocal softtabstop=2
+  autocmd FileType html setlocal shiftwidth=2
+augroup END
+
 augroup js-syntax
   autocmd!
+  autocmd FileType javascript setlocal expandtab
   autocmd FileType javascript setlocal tabstop=2
   autocmd FileType javascript setlocal softtabstop=2
   autocmd FileType javascript setlocal shiftwidth=2
