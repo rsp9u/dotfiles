@@ -96,6 +96,12 @@ call ale#Set('python_flake8_executable', 'flake8')
 call ale#Set('python_flake8_options', '--max-line-length=120')
 call ale#Set('sql_sqlfmt_options', '-u')
 
+function! FixGoFmtOnDocker(buffer, lines) abort
+  return {'command': '/usr/local/bin/gofmt -e %t'}
+endfunction
+call ale#fix#registry#Add('fix_gofmt', 'FixGoFmtOnDocker', ['go'], 'Go format')
+let g:ale_fixers['go'] = ['fix_gofmt']
+
 " editor for SIDE file
 function! RegenUuidJson() abort
   for n in range(a:firstline, a:lastline)
