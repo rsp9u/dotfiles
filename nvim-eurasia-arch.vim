@@ -66,3 +66,16 @@ augroup END
 
 " execute system command and paste to under the cursor
 nnoremap Q :execute "norm i" . trim(system(""))<Left><Left><Left>
+
+" side editor
+function! RegenUuidJson() abort
+  for n in range(a:firstline, a:lastline)
+    let line = getline(n)
+    if line =~ '"id":'
+      let olduuid = substitute(line, '\(^.*"id": "\)\([A-Za-z0-9-]*\)\(".*$\)', '\2', '')
+      let newuuid = trim(system('uuidgen'))
+	  silent execute '%s/'.olduuid.'/'.newuuid.'/g'
+    endif
+  endfor
+endfunction
+command! -nargs=0 -range=% RegenUuidJson :<line1>,<line2>call RegenUuidJson()
