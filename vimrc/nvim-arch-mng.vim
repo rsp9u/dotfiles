@@ -23,6 +23,34 @@ Plug 'w0rp/ale'
 Plug 'rking/ag.vim'
 call plug#end()
 
+augroup vim-syntax
+  autocmd!
+  autocmd Filetype vim setlocal tabstop=2
+  autocmd Filetype vim setlocal softtabstop=2
+  autocmd Filetype vim setlocal shiftwidth=2
+augroup END
+
+augroup go-syntax
+  autocmd!
+  autocmd FileType go setlocal noexpandtab
+  autocmd FileType go setlocal tabstop=4
+  autocmd FileType go setlocal shiftwidth=4
+augroup END
+
+augroup yaml-syntax
+  autocmd!
+  autocmd FileType yaml setlocal tabstop=2
+  autocmd FileType yaml setlocal softtabstop=2
+  autocmd FileType yaml setlocal shiftwidth=2
+augroup END
+
+augroup js-syntax
+  autocmd!
+  autocmd FileType javascript setlocal tabstop=2
+  autocmd FileType javascript setlocal softtabstop=2
+  autocmd FileType javascript setlocal shiftwidth=2
+augroup END
+
 let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:lsp_diagnostics_enabled = 1
@@ -58,6 +86,7 @@ let g:ale_fixers['xml'] = ['xmllint']
 call ale#Set('python_flake8_executable', 'flake8')
 call ale#Set('python_flake8_options', '--max-line-length=120')
 call ale#Set('xml_xmllint_options', '--format')
+" call ale#Set('go_golint_options', '-min_confidence=1.1')
 
 " side editor
 function! RegenUuidJson() abort
