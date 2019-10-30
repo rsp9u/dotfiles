@@ -22,6 +22,7 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'w0rp/ale'
 Plug 'rking/ag.vim'
 Plug 'hashivim/vim-terraform'
+Plug 'lcolaholicl/vim-v'
 call plug#end()
 
 augroup vim-syntax
