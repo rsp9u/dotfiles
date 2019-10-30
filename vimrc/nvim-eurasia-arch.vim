@@ -35,6 +35,13 @@ augroup basic-map
   autocmd BufRead,BufNew * nnoremap Q :execute "norm i" . trim(system(""))<Left><Left><Left>
 augroup END
 
+augroup fn-abbrevitions
+  autocmd!
+  autocmd Filetype python iabbrev <buffer> fn def
+  autocmd Filetype go iabbrev <buffer> fn func
+  autocmd Filetype javascript iabbrev <buffer> fn function
+augroup END
+
 augroup python-abbreviations
   autocmd!
   autocmd Filetype python iabbrev <buffer> lam lambda
