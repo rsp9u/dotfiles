@@ -1,6 +1,8 @@
 augroup color-scheme
   autocmd!
   autocmd ColorScheme peachpuff highlight Comment ctermfg=12 guifg=#5C80FF
+  autocmd ColorScheme peachpuff highlight Pmenu ctermbg=3 ctermfg=0 guifg=#5C80FF
+  autocmd ColorScheme peachpuff highlight PmenuSel ctermbg=0 ctermfg=2 guibg=black guifg=green cterm=BOLD gui=BOLD
 augroup END
 colorscheme peachpuff
 
@@ -12,7 +14,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'editorconfig/editorconfig-vim'
 Plug 'posva/vim-vue'
 Plug 'digitaltoad/vim-pug'
-Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
