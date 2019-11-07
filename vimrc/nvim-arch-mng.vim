@@ -24,6 +24,7 @@ Plug 'w0rp/ale'
 Plug 'rking/ag.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'lcolaholicl/vim-v'
+Plug 'mattn/sonictemplate-vim'
 call plug#end()
 
 augroup vim-syntax
