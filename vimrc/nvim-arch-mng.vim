@@ -114,6 +114,8 @@ let g:ale_fixers['go'] = ['gofmt']
 let g:ale_fixers['xml'] = ['xmllint']
 let g:ale_fixers['terraform'] = ['terraform']
 let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_linters = {}
+let g:ale_linters['javascript'] = ['fecs', 'flow', 'flow-language-server', 'jscs', 'jshint', 'standard', 'tsserver', 'xo']
 call ale#Set('python_flake8_executable', 'flake8')
 call ale#Set('python_flake8_options', '--max-line-length=120')
 call ale#Set('xml_xmllint_options', '--format')
