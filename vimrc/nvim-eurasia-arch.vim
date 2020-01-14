@@ -89,7 +89,7 @@ augroup END
 
 " ale
 let g:ale_linters = {}
-let g:ale_linters['python'] = ['flake8']
+let g:ale_linters['python'] = ['flake8', 'pylint']
 let g:ale_fixers = {}
 let g:ale_fixers['sql'] = ['sqlfmt']
 let g:ale_fixers['xml'] = ['xmllint']
@@ -97,6 +97,8 @@ let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fix_on_save = 1
 call ale#Set('python_flake8_executable', 'flake8')
 call ale#Set('python_flake8_options', '--max-line-length=120')
+call ale#Set('python_pylint_executable', 'pylint')
+call ale#Set('python_pylint_options', '--disable=all --enable=no-member,no-name-in-module')
 call ale#Set('sql_sqlfmt_options', '-u')
 
 function! FixGoFmtOnDocker(buffer, lines) abort
