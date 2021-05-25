@@ -26,6 +26,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'mattn/sonictemplate-vim'
 Plug 'neoclide/jsonc.vim'
 Plug 'bkad/CamelCaseMotion'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 augroup vim-syntax
@@ -175,3 +176,9 @@ omap <silent> ib <Plug>CamelCaseMotion_ib
 xmap <silent> ib <Plug>CamelCaseMotion_ib
 omap <silent> ie <Plug>CamelCaseMotion_ie
 xmap <silent> ie <Plug>CamelCaseMotion_ie
+
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = 'node_modules\|\.git'
+let g:ctrlp_prompt_mappings = { 'AcceptSelection("e")': [], 'AcceptSelection("t")': ['<cr>', '<c-t>'] }
