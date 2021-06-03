@@ -37,7 +37,6 @@ Plug 'mxw/vim-jsx'
 Plug 'JuliaEditorSupport/julia-vim'
 " editor assistant
 Plug 'tpope/vim-surround'
-Plug 'bkad/CamelCaseMotion'
 " code static analysis
 Plug 'w0rp/ale'
 Plug 'prabirshrestha/async.vim'
@@ -154,22 +153,6 @@ call ale#Set('python_flake8_options', '--max-line-length=180')
 call ale#Set('xml_xmllint_options', '--format')
 call ale#Set('terraform_fmt_executable', '/usr/local/bin/terraform')
 call ale#Set('javascript_prettier_options', '--print-width 120')
-
-" CamelCaseMotion
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
-sunmap b
-sunmap e
-sunmap ge
-omap <silent> iw <Plug>CamelCaseMotion_iw
-xmap <silent> iw <Plug>CamelCaseMotion_iw
-omap <silent> ib <Plug>CamelCaseMotion_ib
-xmap <silent> ib <Plug>CamelCaseMotion_ib
-omap <silent> ie <Plug>CamelCaseMotion_ie
-xmap <silent> ie <Plug>CamelCaseMotion_ie
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
