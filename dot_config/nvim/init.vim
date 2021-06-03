@@ -5,6 +5,7 @@
 syntax enable
 augroup color-scheme
   autocmd!
+  autocmd ColorScheme peachpuff highlight String ctermfg=9 guifg=#FF0000
   autocmd ColorScheme peachpuff highlight Comment ctermfg=12 guifg=#5C80FF
   autocmd ColorScheme peachpuff highlight Pmenu ctermbg=3 ctermfg=0 guifg=#5C80FF
   autocmd ColorScheme peachpuff highlight PmenuSel ctermbg=0 ctermfg=2 guibg=black guifg=green cterm=BOLD gui=BOLD
