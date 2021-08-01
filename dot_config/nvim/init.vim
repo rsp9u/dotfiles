@@ -128,7 +128,7 @@ augroup activate-left-tab
   autocmd!
   autocmd TabEnter * let s:after_tab_leave = v:false
   autocmd TabLeave * let s:after_tab_leave = v:true
-  autocmd TabClose * let call s:activate_left(expand('<afile>'))
+  autocmd TabClose * call s:activate_left(expand('<afile>'))
 augroup END
 function! s:activate_left(tab_number) abort
   let current = tabpagenr()
