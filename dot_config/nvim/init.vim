@@ -35,6 +35,8 @@ Plug 'posva/vim-vue'
 Plug 'digitaltoad/vim-pug'
 Plug 'mxw/vim-jsx'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'evanleck/vim-svelte'
 " editor assistant
 Plug 'tpope/vim-surround'
 " code static analysis
@@ -75,22 +77,6 @@ augroup html-syntax
   autocmd FileType html setlocal tabstop=2
   autocmd FileType html setlocal softtabstop=2
   autocmd FileType html setlocal shiftwidth=2
-augroup END
-
-augroup web-syntax
-  autocmd!
-  autocmd FileType javascript setlocal tabstop=2
-  autocmd FileType javascript setlocal softtabstop=2
-  autocmd FileType javascript setlocal shiftwidth=2
-  autocmd FileType typescript setlocal tabstop=2
-  autocmd FileType typescript setlocal softtabstop=2
-  autocmd FileType typescript setlocal shiftwidth=2
-  autocmd FileType javascript.jsx setlocal tabstop=2
-  autocmd FileType javascript.jsx setlocal softtabstop=2
-  autocmd FileType javascript.jsx setlocal shiftwidth=2
-  autocmd FileType vue setlocal tabstop=2
-  autocmd FileType vue setlocal softtabstop=2
-  autocmd FileType vue setlocal shiftwidth=2
 augroup END
 
 augroup sh-syntax
@@ -140,6 +126,10 @@ endfunction
 """"""""""""""""""""""""""""""""
 " Plugin settings
 """"""""""""""""""""""""""""""""
+
+" vim-svelte
+let g:svelte_indent_script = 0
+let g:svelte_indent_style = 0
 
 " jsonc.vim
 augroup jsonc-ftdetect
