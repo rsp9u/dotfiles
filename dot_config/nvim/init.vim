@@ -123,6 +123,21 @@ function! s:activate_left(tab_number) abort
   endif
 endfunction
 
+" make directory for current file automatically
+" from: https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
+function s:MakeDirIfNotExists(file, buf)
+  if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+    let dir=fnamemodify(a:file, ':h')
+    if !isdirectory(dir)
+      call mkdir(dir, 'p')
+    endif
+  endif
+endfunction
+augroup write-create-directory
+  autocmd!
+  autocmd BufWritePre * :call s:MakeDirIfNotExists(expand('<afile>'), +expand('<abuf>'))
+augroup END
+
 """"""""""""""""""""""""""""""""
 " Plugin settings
 """"""""""""""""""""""""""""""""
