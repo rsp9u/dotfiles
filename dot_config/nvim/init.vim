@@ -15,14 +15,11 @@ colorscheme peachpuff
 " default
 set hlsearch
 set tabpagemax=100
-augroup tab-default
-  autocmd!
-  autocmd BufRead,BufNew * setlocal autoindent
-  autocmd BufRead,BufNew * setlocal expandtab
-  autocmd BufRead,BufNew * setlocal tabstop=4
-  autocmd BufRead,BufNew * setlocal softtabstop=4
-  autocmd BufRead,BufNew * setlocal shiftwidth=4
-augroup END
+set autoindent
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 " Plug
 call plug#begin('~/.local/share/nvim/plugged')
