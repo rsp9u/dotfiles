@@ -33,14 +33,16 @@ Plug 'digitaltoad/vim-pug'
 Plug 'mxw/vim-jsx'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'pangloss/vim-javascript'
-Plug 'evanleck/vim-svelte'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'ziglang/zig.vim'
 " editor assistant
 Plug 'tpope/vim-surround'
 " code static analysis
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-lsp-settings'
 " command line tool
 Plug 'rking/ag.vim'
 Plug 'rhysd/reply.vim'
@@ -60,6 +62,7 @@ augroup END
 augroup go-syntax
   autocmd!
   autocmd FileType go setlocal noexpandtab
+  autocmd FileType go setlocal tabstop=4
 augroup END
 
 augroup yaml-syntax
@@ -157,17 +160,35 @@ let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_auto_popup = 1
 nnoremap gd :LspDefinition<CR>
 
-" ale
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {}
-let g:ale_fixers['go'] = ['gofmt']
-let g:ale_fixers['xml'] = ['xmllint']
-let g:ale_linters = {}
-let g:ale_linters['javascript'] = ['fecs', 'flow', 'flow-language-server', 'jscs', 'jshint', 'standard', 'tsserver', 'xo']
-call ale#Set('python_flake8_executable', 'flake8')
-call ale#Set('python_flake8_options', '--max-line-length=180')
-call ale#Set('xml_xmllint_options', '--format')
-call ale#Set('terraform_fmt_executable', '/usr/local/bin/terraform')
+
+" Enable flake8
+let g:lsp_settings = {
+\  'pylsp-all': {
+\    'workspace_config': {
+\      'pylsp': {
+\        'configurationSources': ['flake8'],
+\        'plugins': {
+\          'flake8': {'enabled': 1},
+\          'mccabe': {'enabled': 0},
+\          'pycodestyle': {'enabled': 0},
+\          'pyflakes': {'enabled': 0},
+\        }
+\      }
+\    }
+\  }
+\}
+
+" " ale
+" let g:ale_fix_on_save = 1
+" let g:ale_fixers = {}
+" let g:ale_fixers['go'] = ['gofmt']
+" let g:ale_fixers['xml'] = ['xmllint']
+" let g:ale_linters = {}
+" let g:ale_linters['javascript'] = ['fecs', 'flow', 'flow-language-server', 'jscs', 'jshint', 'standard', 'tsserver', 'xo']
+" call ale#Set('python_flake8_executable', 'flake8')
+" call ale#Set('python_flake8_options', '--max-line-length=180')
+" call ale#Set('xml_xmllint_options', '--format')
+" call ale#Set('terraform_fmt_executable', '/usr/local/bin/terraform')
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
