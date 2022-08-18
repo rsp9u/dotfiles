@@ -98,6 +98,12 @@ augroup quick-fix-window
   autocmd FileType qf 6wincmd_
 augroup END
 
+augroup keymap-change
+  autocmd!
+  " omni completion
+  autocmd BufRead,BufNew * inoremap <C-O> <C-X><C-O>
+augroup END
+
 augroup external-command
   autocmd!
   " the silver searcher command
@@ -106,7 +112,6 @@ augroup external-command
   " execute system command and paste to under the cursor
   autocmd BufRead,BufNew * nnoremap Q :execute "norm i" . trim(system(""))<Left><Left><Left>
 augroup END
-echo
 
 " activate left tab after tab close
 let s:after_tab_leave = v:false
@@ -153,15 +158,14 @@ augroup jsonc-ftdetect
 augroup END
 
 " vim-lsp
-let g:lsp_log_verbose = 1
 let g:lsp_diagnostics_enabled = 1
-let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_document_highlight_enabled = 0
+let g:lsp_document_code_action_signs_enabled = 0
 let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_auto_popup = 1
-nnoremap gd :LspDefinition<CR>
 
-
-" Enable flake8
 let g:lsp_settings = {
 \  'pylsp-all': {
 \    'workspace_config': {
@@ -177,18 +181,29 @@ let g:lsp_settings = {
 \    }
 \  }
 \}
+let g:lsp_settings_root_markers = ['package.json', '.git', '.git/']
 
-" " ale
-" let g:ale_fix_on_save = 1
-" let g:ale_fixers = {}
-" let g:ale_fixers['go'] = ['gofmt']
-" let g:ale_fixers['xml'] = ['xmllint']
-" let g:ale_linters = {}
-" let g:ale_linters['javascript'] = ['fecs', 'flow', 'flow-language-server', 'jscs', 'jshint', 'standard', 'tsserver', 'xo']
-" call ale#Set('python_flake8_executable', 'flake8')
-" call ale#Set('python_flake8_options', '--max-line-length=180')
-" call ale#Set('xml_xmllint_options', '--format')
-" call ale#Set('terraform_fmt_executable', '/usr/local/bin/terraform')
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> gs <plug>(lsp-document-symbol-search)
+  "nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+  "nmap <buffer> gr <plug>(lsp-references) ; Use ag search
+  nmap <buffer> gi <plug>(lsp-implementation)
+  nmap <buffer> gr <plug>(lsp-type-definition)
+  nmap <buffer> <leader>rn <plug>(lsp-rename)
+  nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+  nmap <buffer> K <plug>(lsp-hover)
+  let g:lsp_format_sync_timeout = 1000
+  autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+endfunction
+
+augroup lsp_install
+  " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+  autocmd!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
