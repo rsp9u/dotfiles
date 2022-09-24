@@ -101,7 +101,7 @@ augroup END
 augroup keymap-change
   autocmd!
   " omni completion
-  autocmd BufRead,BufNew * inoremap <C-O> <C-X><C-O>
+  autocmd BufRead,BufNew * inoremap <C-X> <C-X><C-O>
 augroup END
 
 augroup external-command
