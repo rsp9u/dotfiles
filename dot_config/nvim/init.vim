@@ -5,12 +5,12 @@
 syntax enable
 augroup color-scheme
   autocmd!
-  autocmd ColorScheme peachpuff highlight String ctermfg=9 guifg=#FF0000
-  autocmd ColorScheme peachpuff highlight Comment ctermfg=12 guifg=#5C80FF
-  autocmd ColorScheme peachpuff highlight Pmenu ctermbg=3 ctermfg=0 guifg=#5C80FF
-  autocmd ColorScheme peachpuff highlight PmenuSel ctermbg=0 ctermfg=2 guibg=black guifg=green cterm=BOLD gui=BOLD
+  autocmd ColorScheme torte highlight String ctermfg=9 guifg=#FF0000
+  autocmd ColorScheme torte highlight Comment ctermfg=12 guifg=#5C80FF
+  autocmd ColorScheme torte highlight Pmenu ctermbg=3 ctermfg=0 guifg=#5C80FF
+  autocmd ColorScheme torte highlight PmenuSel ctermbg=0 ctermfg=2 guibg=black guifg=green cterm=BOLD gui=BOLD
 augroup END
-colorscheme peachpuff
+colorscheme torte
 
 " default
 set hlsearch
@@ -20,6 +20,7 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set mouse=
 
 " Plug
 call plug#begin('~/.local/share/nvim/plugged')
@@ -210,3 +211,42 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = 'node_modules\|\.git'
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("e")': [], 'AcceptSelection("t")': ['<cr>', '<c-t>'] }
+
+
+function! s:get_syn_id(transparent)
+  let synid = synID(line("."), col("."), 1)
+  if a:transparent
+    return synIDtrans(synid)
+  else
+    return synid
+  endif
+endfunction
+function! s:get_syn_attr(synid)
+  let name = synIDattr(a:synid, "name")
+  let ctermfg = synIDattr(a:synid, "fg", "cterm")
+  let ctermbg = synIDattr(a:synid, "bg", "cterm")
+  let guifg = synIDattr(a:synid, "fg", "gui")
+  let guibg = synIDattr(a:synid, "bg", "gui")
+  return {
+        \ "name": name,
+        \ "ctermfg": ctermfg,
+        \ "ctermbg": ctermbg,
+        \ "guifg": guifg,
+        \ "guibg": guibg}
+endfunction
+function! s:get_syn_info()
+  let baseSyn = s:get_syn_attr(s:get_syn_id(0))
+  echo "name: " . baseSyn.name .
+        \ " ctermfg: " . baseSyn.ctermfg .
+        \ " ctermbg: " . baseSyn.ctermbg .
+        \ " guifg: " . baseSyn.guifg .
+        \ " guibg: " . baseSyn.guibg
+  let linkedSyn = s:get_syn_attr(s:get_syn_id(1))
+  echo "link to"
+  echo "name: " . linkedSyn.name .
+        \ " ctermfg: " . linkedSyn.ctermfg .
+        \ " ctermbg: " . linkedSyn.ctermbg .
+        \ " guifg: " . linkedSyn.guifg .
+        \ " guibg: " . linkedSyn.guibg
+endfunction
+command! SyntaxInfo call s:get_syn_info()
